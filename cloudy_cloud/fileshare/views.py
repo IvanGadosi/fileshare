@@ -24,7 +24,7 @@ def home_view(request):
         if upload_form.is_valid():
             uploaded_file=upload_form.save()
             upload_form.save()
-            if uploaded_file.file.size > 25000:      #250000000
+            if uploaded_file.file.size > 100000000:
                 uploaded_file.delete()
                 return redirect('home')
             else:
