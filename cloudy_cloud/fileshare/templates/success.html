@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+	<title>Success</title>
+{% endblock title %}
+
+
+
+{% block content %}
+	{% if file %}
+		{% load sizify %}
+		<h1>Successfully uploaded file with key:</h1>
+		<h1 class="text-primary">{{ file.file_key }}</h1>
+		<p>File size: {{ file.file.size|sizify }}</p>
+		<small>Uploaded {{ file.date_created|timesince }} ago</small>
+	{% endif %}
+{% endblock content %}

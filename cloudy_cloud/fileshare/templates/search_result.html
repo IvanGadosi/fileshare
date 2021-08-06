@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+	<title>Searched</title>
+{% endblock title %}
+
+
+
+{% block content %}
+	{% load sizify %}
+	<h1>File with key</h1>
+	<h1 class="text-primary">{{ file.file_key }}</h1>
+	<h1>found</h1>
+	<p>File size: {{ file.file.size|sizify }}</p>
+	<form enctype="multipart/form-data"method="post">
+	    {% csrf_token %}
+        <input type="submit" value="Download" class="btn btn-lg btn-primary fw-bold">
+    </form>
+    <a href="{% url 'paypal-buy' file.file_key %}" class="text-success">Prolong your key</a>
+    <small>Uploaded {{ file.date_created|timesince }} ago</small>
+{% endblock content %}

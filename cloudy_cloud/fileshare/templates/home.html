@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+	<title>Home</title>
+{% endblock title %}
+
+
+
+{% block content %}
+<h1>Welcome to cloudy cloud</h1>
+<p class="lead">A place where you can share your files over the internet. Download a file using your unique key or upload a file to share with others. (up to 100MB) Your file-key can be used for the next 24 hours.</p>
+<p></p>
+<form method="post">
+	{% csrf_token %}
+	<label>File-key:</label>
+	<input name="searched" type="text" size="36">
+	<button type="submit" class="btn btn-lg btn-primary fw-bold">Search</button>
+</form>
+<p></p>
+<p></p>
+<p></p>
+<p>Your recently used keys:</p>
+{% for session_key in session_keys %}
+<a href="{% url 'search-result' session_key %}">{{ session_key }}</a>
+{% endfor %}
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ upload_form.as_table }}
+	<button type="submit" class="btn btn-lg btn-primary fw-bold">Upload</button>
+</form>
+{% endblock content %}
